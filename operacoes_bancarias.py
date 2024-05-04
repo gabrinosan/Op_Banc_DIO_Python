@@ -1,11 +1,11 @@
 LIMITE = 500
 LIMITE_SAQUES = 3
+AGENCIA = "0001"
 saldo = 0
 extrato = ""
 numero_de_saques = 0
-nome = ""
-cad = ""
-i = 0
+contas = []
+user = []
 
 def deposito (saldo, valor, extrato, /):
     if valor > 0:
@@ -37,9 +37,24 @@ def saque (*, saldo, valor, extrato, limite, numero_saques, limite_saques):
 def extrato_t (saldo, /, *, extrato):
     print(f"\n-------------EXTRATO-------------\n{extrato}\tSaldo: R${saldo:.2f}\n")
 
+def novo_usuario (user):
+    cpf = input("Informe seu CPF (somente números): ")
+    nome = input("Informe seu nome: ")
+    data_nascimento = input("Informe sua data de nascimento (dd:mm:aa): ")
+    endereco = input("Informe seu endereço: ")
+
+    user.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
+
+    print("------Usuário criado com sucesso------")
+
+def cria_conta (agencia, numero_conta, usuarios):
+    cpf = input("Informe o CPF do usuário: ")
+
+    return {"agencia": agencia, "numero_conta": numero_conta, "usuario": user}
+
 while True:
 
-    opcao = input("D - Depositar\nS - Sacar\nE - Extrato\n0 - Sair\nOpção: ")
+    opcao = input("D - Depositar\nS - Sacar\nE - Extrato\nnu - Novo usuário\nnc - Nova conta\nlc - Listar contas\n0 - Sair\nOpção: ")
 
     if opcao == "D" or opcao == "d":
         valor = float(input("Informe o valor do depósito: "))
@@ -54,6 +69,19 @@ while True:
 
     elif opcao == "0":
         break
+
+    elif opcao == "nu":
+        novo_usuario(user)
+
+    elif opcao == "nc":
+        numero_conta = len(contas) + 1
+        conta = cria_conta(AGENCIA, numero_conta, user)
+
+        if conta:
+            contas.append(conta)
+
+    elif opcao == "lc":
+        print({contas})
 
     else:
         print("Por favor selecione novamente a operação desejada.")
