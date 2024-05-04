@@ -4,6 +4,7 @@ saldo = 0
 extrato = ""
 numero_de_saques = 0
 
+
 def deposito (saldo, valor, extrato, limite, numero_saques, limite_saques):
 
     if valor > 0:
