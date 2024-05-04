@@ -34,7 +34,7 @@ def saque (*, saldo, valor, extrato, limite, numero_saques, limite_saques):
 
     return saldo, extrato
 
-def extrato_t (saldo, extrato):
+def extrato_t (saldo, /, *, extrato):
     print(f"\n-------------EXTRATO-------------\n{extrato}\tSaldo: R${saldo:.2f}\n")
 
 while True:
@@ -50,7 +50,7 @@ while True:
         saldo, extrato = saque(saldo = saldo, valor = valor, extrato = extrato, limite = LIMITE, numero_saques = numero_de_saques, limite_saques = LIMITE_SAQUES)
 
     elif opcao == "E" or opcao == "e":
-        extrato_t(saldo, extrato)
+        extrato_t(saldo, extrato = extrato)
 
     elif opcao == "0":
         break
