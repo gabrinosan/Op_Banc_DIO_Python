@@ -81,7 +81,7 @@ while True:
             contas.append(conta)
 
     elif opcao == "lc":
-        print({contas})
+        print(contas)
 
     else:
         print("Por favor selecione novamente a operação desejada.")
